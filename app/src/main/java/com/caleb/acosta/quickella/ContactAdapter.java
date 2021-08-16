@@ -42,6 +42,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         Contact contact = db.getAllContacts().get(position);
 
         holder.phone.setText("+"+contact.getAreaCode()+" "+contact.getPhone());
+
         holder.phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,11 +52,25 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
                 v.getContext().startActivity(i);
             }
         });
+
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 db.deleteContact(contact);
                 notifyDataSetChanged();
+            }
+        });
+
+        holder.share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+                Link link = new Link(contact);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_SUBJECT, "WA Personal Link");
+                intent.putExtra(Intent.EXTRA_TEXT, link.getLink());
+
+                v.getContext().startActivity(Intent.createChooser(intent, "Share"));
             }
         });
     }
@@ -70,12 +85,14 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         public LinearLayout linearLayout;
         public Button phone;
         public ImageButton delete;
+        public ImageButton share;
 
         public ViewHolder(View itemView) {
             super(itemView);
             this.phone = (Button) itemView.findViewById(R.id.listContact);
-            this.delete = (ImageButton)itemView.findViewById(R.id.deleteButton);
-            this.linearLayout = (LinearLayout)itemView.findViewById(R.id.contactMainLayout);
+            this.delete = (ImageButton) itemView.findViewById(R.id.deleteButton);
+            this.linearLayout = (LinearLayout) itemView.findViewById(R.id.contactMainLayout);
+            this.share = (ImageButton) itemView.findViewById(R.id.shareButton);
         }
     }
 }

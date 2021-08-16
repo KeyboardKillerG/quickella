@@ -22,6 +22,7 @@
         android:inputType="phone"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
+        android:hint="555-555-5555"
 
         />
 
@@ -32,7 +33,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
-        android:text="Message"
+        android:hint="Message"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/textPhone"/>
 
@@ -46,6 +47,7 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
+        android:backgroundTint="@color/green_primary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

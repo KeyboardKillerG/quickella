@@ -2,6 +2,7 @@ package com.caleb.acosta.quickella;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     CountryCodePicker cpp;
     FloatingActionButton fab;
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
